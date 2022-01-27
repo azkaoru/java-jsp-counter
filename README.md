@@ -1,1 +1,1 @@
-# java-jsp-counter
+# java-spring-petclinic
