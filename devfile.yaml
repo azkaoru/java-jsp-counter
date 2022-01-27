@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: spring-petclinic
+  name: jsp-counter
 
 attributes:
   che-theia.eclipse.org/sidecar-policy: USE_DEV_CONTAINER
@@ -200,11 +200,11 @@ commands:
   - id: prepare-database
     exec:
       component: mysql
-      workingDir: ${PROJECTS_ROOT}/java-spring-petclinic
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       commandLine: |
-        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root < ${PROJECTS_ROOT}/java-spring-petclinic/src/main/resources/db/mysql/user.sql && \
-        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root petclinic < ${PROJECTS_ROOT}/java-spring-petclinic/src/main/resources/db/mysql/schema.sql && \
-        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root petclinic < ${PROJECTS_ROOT}/java-spring-petclinic/src/main/resources/db/mysql/data.sql && \
+        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root < ${PROJECTS_ROOT}/java-jsp-counter/src/main/resources/db/mysql/user.sql && \
+        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root petclinic < ${PROJECTS_ROOT}/java-jsp-counter/src/main/resources/db/mysql/schema.sql && \
+        /opt/rh/rh-mysql57/root/usr/bin/mysql -u root petclinic < ${PROJECTS_ROOT}/java-jsp-counter/src/main/resources/db/mysql/data.sql && \
         echo -e "\e[32mDone.\e[0m Database petclinic was configured"
       group:
         kind: run
@@ -213,7 +213,7 @@ commands:
   - id: build
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/java-spring-petclinic
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       commandLine: mvn clean install
       group:
         kind: build
@@ -222,7 +222,7 @@ commands:
   - id: run-with-hsqldb
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/java-spring-petclinic
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       commandLine: >-
         java -jar target/*.jar
       group:
@@ -232,7 +232,7 @@ commands:
   - id: run-with-mysql
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/java-spring-petclinic
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       commandLine: |
         java -jar -Dspring-boot.run.profiles=mysql \
         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 \
@@ -244,7 +244,7 @@ commands:
   - id: run-debug
     exec:
       component: tools
-      workingDir: ${PROJECTS_ROOT}/java-spring-petclinic
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       commandLine: >-
         java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 target/*.jar
       group:
