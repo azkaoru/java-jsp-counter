@@ -234,9 +234,10 @@ commands:
 
   - id: deploy
     exec:
-      component: centos-quarkus-maven
+      component: tools
       commandLine: >-
-        cp target/*.war /opt/jboss5/jboss-as/server/default/deploy && echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
+        cp target/*.war /opt/jboss5/jboss-as/server/default/deploy && 
+          echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
       workingDir: ${PROJECTS_ROOT}/java-jsp-counter
       group:
         kind: run
