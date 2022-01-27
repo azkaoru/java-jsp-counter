@@ -173,6 +173,19 @@ components:
         - name: m2
           path: /home/user/.m2
 
+  - name: eap512
+    container:
+      image: '172.25.120.89:5000/eap512'
+      endpoints:
+        - exposure: public
+          name: root
+          path: /
+          protocol: http
+          targetPort: 8080
+      memoryLimit: 1Gi
+      mountSources: true
+      sourceMapping: /projects
+   
   - name: m2
     volume:
       size: 1G
