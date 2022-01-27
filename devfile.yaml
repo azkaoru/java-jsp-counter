@@ -234,7 +234,7 @@ commands:
 
   - id: deploy
     exec:
-      component: tools
+      component: eap512
       commandLine: >-
         cp target/*.war /opt/jboss5/jboss-as/server/default/deploy && 
           echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
