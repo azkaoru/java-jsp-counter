@@ -232,6 +232,14 @@ commands:
         kind: build
         isDefault: true
 
+  - id: deploy
+    exec:
+      component: centos-quarkus-maven
+      command: cp target/*.war /opt/jboss5/jboss-as/server/default/deploy &&
+        echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
+
+
   - id: run-with-hsqldb
     exec:
       component: tools
