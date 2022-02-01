@@ -173,6 +173,19 @@ components:
         - name: m2
           path: /home/user/.m2
 
+  - name: eap512
+    container:
+      image: '172.25.120.89:5000/eap512'
+      endpoints:
+        - exposure: public
+          name: root
+          path: /
+          protocol: http
+          targetPort: 8080
+      memoryLimit: 1Gi
+      mountSources: true
+      sourceMapping: /projects
+   
   - name: m2
     volume:
       size: 1G
@@ -218,6 +231,18 @@ commands:
       group:
         kind: build
         isDefault: true
+
+  - id: deploy
+    exec:
+      component: eap512
+      commandLine: >-
+        cp target/*.war /opt/jboss5/jboss-as/server/default/deploy && 
+          echo 'Archive was deployed, click on eap endpoint from Workspace view to open the application'
+      workingDir: ${PROJECTS_ROOT}/java-jsp-counter
+      group:
+        kind: run
+        isDefault: true
+
 
   - id: run-with-hsqldb
     exec:
